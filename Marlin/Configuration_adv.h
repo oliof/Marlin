@@ -1172,6 +1172,8 @@
 
   //#define FTM_SHAPER_E                        // Include E shaping support
                                                 // Required to synchronize extruder with XYZ (better quality)
+                                                // Only keep disabled in very memory limited environments if
+                                                // other axes have shaping enabled.
   #define FTM_DEFAULT_SHAPER_E      ftMotionShaper_NONE // Default shaper mode on Extruder axis
   #define FTM_SHAPING_DEFAULT_FREQ_E   21.0f    // (Hz) Default peak frequency used by input shapers
   #define FTM_SHAPING_ZETA_E            0.03f   // Zeta used by input shapers for E axis
@@ -1181,6 +1183,7 @@
 
   //#define FTM_SMOOTHING                       // Smoothing can reduce artifacts and make steppers quieter
                                                 // on sharp corners, but too much will round corners.
+                                                // Enable except in very memory limited environments.
   #if ENABLED(FTM_SMOOTHING)
     #define FTM_MAX_SMOOTHING_TIME      0.10f   // (s) Maximum smoothing time. Higher values consume more RAM.
                                                 // Increase smoothing time to reduce jerky motion, ghosting and noises.
