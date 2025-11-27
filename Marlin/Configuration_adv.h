@@ -1191,8 +1191,13 @@
                                                 //     smoothing acceleration peaks, which may also smooth curved surfaces.
   #endif
 
-  #define FTM_TRAJECTORY_TYPE   TRAPEZOIDAL // Block acceleration profile (TRAPEZOIDAL, POLY5, POLY6)
-                                            // TRAPEZOIDAL: Continuous Velocity. Max acceleration is respected.
+  #define FTM_POLY_TRAJECTORIES             // disable POLY5/POLY6 to save about 3k of flash.
+  
+  #ifndef FTM_POLY_TRAJECTORIES
+    #define FTM_TRAJECTORY_TYPE TRAPEZOIDAL // will be the only trajectory type available.
+  else
+    #define FTM_TRAJECTORY_TYPE TRAPEZOIDAL // Block acceleration profile (TRAPEZOIDAL, POLY5, POLY6)
+  #endif                                    // TRAPEZOIDAL: Continuous Velocity. Max acceleration is respected.
                                             // POLY5:       Like POLY6 with 1.5x but uses less CPU.
                                             // POLY6:       Continuous Acceleration (aka S_CURVE).
                                             // POLY trajectories not only reduce resonances without rounding corners, but also
